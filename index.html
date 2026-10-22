@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Trek een lotje</title>
+<meta name="description" content="Verzamel ideeën, namen of klusjes in een pot en laat het lot beslissen. Samen met je vrienden, huisgenoten of je lief.">
+<meta name="theme-color" content="#eef0f6">
+<meta name="color-scheme" content="light">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Lotje">
+<meta property="og:title" content="Trek een lotje">
+<meta property="og:description" content="Kun je niet kiezen? Trek een lotje.">
+<meta property="og:image" content="https://www.trekeenlotje.nl/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;500;600;700&family=DM+Mono:wght@500&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0}
+.scene svg{width:100%;height:auto;display:block}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <button class="back" type="button" id="backBtn" hidden>← Terug</button>
+  <button class="logo" type="button" id="logoBtn" aria-label="Trek een lotje, naar start"><span id="logoJar"></span>Lotje</button>
+  <span class="crumb" id="crumb"></span>
+  <button class="bell" type="button" id="bellBtn" hidden aria-label="Meldingen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4z" fill="var(--c-sun)" stroke="var(--ink)" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 20a2 2 0 0 0 4 0" fill="none" stroke="var(--ink)" stroke-width="1.6" stroke-linecap="round"/></svg><span class="badge" id="badge" hidden></span></button>
+  <button class="me" type="button" id="meBtn" hidden aria-label="Je account"></button>
+</div></header>
+
+<main class="wrap" id="app">
+  <div id="view" style="display:contents"></div>
+</main>
+<div id="toastBox" aria-live="polite"></div>
+
+<script src="config.js?v=2"></script>
+<script src="vendor-supabase.js"></script>
+<script src="app.js?v=2"></script>
+</body>
+</html>
