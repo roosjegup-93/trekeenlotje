@@ -201,7 +201,7 @@ function shell() {
       <p><button class="btn" type="button" data-act="logout">Uitloggen</button></p>
       <section class="panel danger-zone">
         <h2 style="font-size:1.25rem">Account verwijderen</h2>
-        <p class="muted" style="font-size:.92rem">Je naam, je e-mailadres, je lidmaatschappen en je instellingen worden gewist. Lootjes en potten die je maakte blijven in de groep staan, zonder je naam. Een groep waar daarna niemand meer in zit, wordt ook verwijderd. Dit kun je niet terugdraaien.</p>
+        <p class="muted" style="font-size:.92rem">Je naam, je e-mailadres, je lidmaatschappen en je instellingen worden gewist. Lotjes en potten die je maakte blijven in de groep staan, zonder je naam. Een groep waar daarna niemand meer in zit, wordt ook verwijderd. Dit kun je niet terugdraaien.</p>
         ${confirmKey === "delAccount" ? `
         <label for="delConfirm"><span>Typ <b>VERWIJDER</b> om te bevestigen</span><input id="delConfirm" autocomplete="off" placeholder="VERWIJDER"></label>
         <div class="actions"><button class="btn danger" type="button" data-act="delAccountGo">Verwijder mijn account</button><button class="btn" type="button" data-act="delAccountCancel">Annuleren</button></div>`
@@ -245,17 +245,12 @@ function shell() {
       <div><span class="eyebrow">Groep</span><h1 id="gTitle"></h1></div>
       <div class="faces" id="gFaces"></div>
       <div class="share" id="shareBox"></div>
-      <form class="panel invite" id="invite" hidden>
-        <h2 style="font-size:1.3rem">Uitnodigen per e-mail</h2>
-        <p class="muted" style="font-size:.9rem">Trek een lotje stuurt een mail met een link en de code van deze groep.</p>
-        <label for="invEmail">E-mailadres<input id="invEmail" type="email" required placeholder="naam@voorbeeld.nl" autocomplete="off"></label>
-        <div class="actions"><button class="btn primary" type="submit" id="invSend">Verstuur uitnodiging</button><button class="btn" type="button" data-act="panel" data-p="">Sluiten</button></div>
-        <p class="msg" id="invMsg" aria-live="polite"></p>
-        <details><summary>Liever zelf sturen, bijvoorbeeld via WhatsApp?</summary>
-          <textarea id="invText" readonly style="margin-top:10px"></textarea>
-          <div class="actions" style="margin-top:8px"><button class="btn small" type="button" data-act="copyInvite">Kopieer bericht</button></div>
-        </details>
-      </form>
+      <div class="panel invite" id="invite" hidden>
+        <h2 style="font-size:1.3rem">Iemand uitnodigen</h2>
+        <p class="muted" style="font-size:.9rem">Kopieer dit bericht en stuur het via WhatsApp of een andere app. Met de link of de code doen ze meteen mee.</p>
+        <textarea id="invText" readonly></textarea>
+        <div class="actions"><button class="btn primary" type="button" data-act="copyInvite">Kopieer bericht</button><button class="btn" type="button" data-act="panel" data-p="">Sluiten</button></div>
+      </div>
     </section>
     <section class="section">
       <span class="eyebrow">Tik op een pot om te trekken</span>
@@ -263,7 +258,7 @@ function shell() {
     </section>
     <form class="panel" id="newPot" hidden>
       <h2 style="font-size:1.35rem">Nieuwe pot</h2>
-      <label class="check" for="npSecret"><input type="checkbox" id="npSecret"><span><b>Geheime pot</b><small>Niemand ziet wat erin zit, behalve je eigen lootjes. Pas bij het trekken komt het lootje tevoorschijn.</small></span></label>
+      <label class="check" for="npSecret"><input type="checkbox" id="npSecret"><span><b>Geheime pot</b><small>Niemand ziet wat erin zit, behalve je eigen lotjes. Pas bij het trekken komt het lotje tevoorschijn.</small></span></label>
       <p class="muted" style="font-size:.9rem">Kies een kant-en-klare pot:</p>
       <div class="templates">${TEMPLATES.map((t, i) => `<button type="button" class="tpl" data-act="tpl" data-i="${i}">${jar(t.color, t.fill === "members" ? 3 : t.fill.length, i + 2, "", false)}<span>${esc(t.name)}<small>${esc(t.hint)}</small></span></button>`).join("")}</div>
       <p class="muted" style="font-size:.9rem;margin-top:6px">Of maak je eigen pot:</p>
@@ -276,20 +271,20 @@ function shell() {
     <p style="text-align:center"><button class="linkbtn danger" type="button" data-act="leave" id="leaveBtn">Groep verlaten</button></p>`;
   } else if (view === "pot") {
     v.innerHTML = `
-    <section class="phead"><span class="eyebrow" id="pGroup"></span><h1 id="pTitle"></h1><p class="muted" id="pSecret" hidden style="margin-top:6px">Geheime pot: je ziet alleen je eigen lootjes. De rest blijft verborgen tot het getrokken wordt.</p></section>
+    <section class="phead"><span class="eyebrow" id="pGroup"></span><h1 id="pTitle"></h1><p class="muted" id="pSecret" hidden style="margin-top:6px">Geheime pot: je ziet alleen je eigen lotjes. De rest blijft verborgen tot het getrokken wordt.</p></section>
     <section class="stage" id="stage">
       <div class="bigjar" id="bigJar"></div>
       <span class="count" id="pCount"></span>
       <button class="draw" type="button" id="drawBtn" data-act="draw">Trek een lotje!</button>
       <div class="result" id="result"></div>
       <p class="last" id="lastDraw"></p>
-      <p class="fair">Eerlijk getrokken: elk lootje heeft precies evenveel kans. De server kiest met echt toeval, niet je telefoon.</p>
+      <p class="fair">Eerlijk getrokken: elk lotje heeft precies evenveel kans. De server kiest met echt toeval, niet je telefoon.</p>
     </section>
     <section class="section" id="planBox"></section>
     <section class="section">
-      <h2 style="font-size:1.4rem">Lootjes erin</h2>
+      <h2 style="font-size:1.4rem">Lotjes erin</h2>
       <form class="inline" id="addSlip" autocomplete="off">
-        <input id="slipIn" maxlength="300" placeholder="Typ iets, bijv. Pizza" aria-label="Nieuw lootje">
+        <input id="slipIn" maxlength="300" placeholder="Typ iets, bijv. Pizza" aria-label="Nieuw lotje">
         <button class="btn primary" type="submit">Erin!</button>
       </form>
       <p class="muted" style="font-size:.85rem">Meerdere tegelijk? Scheid ze met komma's. Of <button class="linkbtn" type="button" data-act="members">doe alle groepsleden erin</button>.</p>
@@ -334,10 +329,10 @@ function refreshGroup() {
   $("gFaces").innerHTML = facesFor(g, 5);
   const m = (g.members || []).length;
   $("shareBox").innerHTML = `<span>Vrienden erbij? Deel deze code:</span><span class="code" id="codeTxt">${esc(g.code)}</span>
-    <button class="btn small" type="button" data-act="copy">Kopieer</button><button class="btn small primary" type="button" data-act="panel" data-p="invite">Nodig uit per e-mail</button><span class="muted">${m} ${m === 1 ? "lid" : "leden"}</span>`;
+    <button class="btn small" type="button" data-act="copy">Kopieer</button><button class="btn small primary" type="button" data-act="panel" data-p="invite">Nodig iemand uit</button><span class="muted">${m} ${m === 1 ? "lid" : "leden"}</span>`;
   $("potGrid").innerHTML = (g.pots || []).map((p) => {
     const n = p.id in counts ? counts[p.id] : null;
-    return `<button type="button" class="pot" data-act="openPot" data-id="${esc(p.id)}">${jar(p.color, n ?? 3, hash(p.id), p.secret ? "lock" : p.icon || "star", true)}<b>${esc(p.name)}</b><small>${n == null ? "…" : n === 1 ? "1 lootje" : n + " lootjes"}${p.secret ? " · geheim" : ""}${p.schedule_at ? " · gepland" : ""}</small></button>`;
+    return `<button type="button" class="pot" data-act="openPot" data-id="${esc(p.id)}">${jar(p.color, n ?? 3, hash(p.id), p.secret ? "lock" : p.icon || "star", true)}<b>${esc(p.name)}</b><small>${n == null ? "…" : n === 1 ? "1 lotje" : n + " lotjes"}${p.secret ? " · geheim" : ""}${p.schedule_at ? " · gepland" : ""}</small></button>`;
   }).join("") + `<button type="button" class="pot new" data-act="panel" data-p="newPot"><svg viewBox="0 0 120 140" aria-hidden="true"><path d="M36 20h48v6c14 4 22 14 22 28v58c0 13-10 24-24 24H38c-14 0-24-11-24-24V54c0-14 8-24 22-28z" fill="none" stroke="var(--muted)" stroke-width="3" stroke-dasharray="7 6"/><circle cx="60" cy="80" r="18" fill="var(--brand)"/><path d="M60 70v20M50 80h20" stroke="var(--brand-ink)" stroke-width="4" stroke-linecap="round"/></svg>Nieuwe pot</button>`;
   $("leaveBtn").textContent = confirmKey === "leave" ? "Zeker weten? Tik nog een keer" : "Groep verlaten";
 }
@@ -350,16 +345,16 @@ function refreshPot() {
   $("pTitle").textContent = p.name;
   $("pSecret").hidden = !p.secret;
   if (!spinning) $("bigJar").innerHTML = jar(p.color, total, hash(p.id), p.icon || "star", true);
-  $("pCount").textContent = total === 0 ? "De pot is leeg" : total === 1 ? "1 lootje in de pot" : total + " lootjes in de pot";
+  $("pCount").textContent = total === 0 ? "De pot is leeg" : total === 1 ? "1 lotje in de pot" : total + " lotjes in de pot";
   $("drawBtn").disabled = spinning || !total;
   const d = p.last_draw;
   $("lastDraw").textContent = d && d.name && !lastResult ? `Laatst getrokken: ${d.name} · ${when(d.at)}${d.auto ? " · automatisch" : d.by ? " · door " + who(d.by) : ""}` : "";
   if (!lastResult) $("result").innerHTML = "";
-  $("slipList").innerHTML = total ? open.map(slipLi).join("") + (hidden ? `<li class="secret"><span>${hidden === 1 ? "1 geheim lootje" : hidden + " geheime lootjes"} van anderen</span></li>` : "") : `<li class="emptyill" style="background:none;box-shadow:none;border-radius:18px;rotate:0deg">${emptyJarIll()}<span>Nog niks in deze pot. Typ hierboven je eerste lootje.</span></li>`;
+  $("slipList").innerHTML = total ? open.map(slipLi).join("") + (hidden ? `<li class="secret"><span>${hidden === 1 ? "1 geheim lotje" : hidden + " geheime lotjes"} van anderen</span></li>` : "") : `<li class="emptyill" style="background:none;box-shadow:none;border-radius:18px;rotate:0deg">${emptyJarIll()}<span>Nog niks in deze pot. Typ hierboven je eerste lotje.</span></li>`;
   $("doneBox").hidden = !done.length;
   $("doneSum").textContent = `Uit de pot gehaald (${done.length})`;
   $("doneList").innerHTML = done.map((s) => `<li class="done"><span>${esc(s.name)}</span><button class="x back" type="button" data-act="putBack" data-id="${esc(s.id)}">Terug erin</button></li>`).join("");
-  $("delPotBtn").textContent = confirmKey === "delPot" ? "Zeker weten? Alle lootjes gaan weg" : "Pot verwijderen";
+  $("delPotBtn").textContent = confirmKey === "delPot" ? "Zeker weten? Alle lotjes gaan weg" : "Pot verwijderen";
   renderPlan(p);
 }
 const REPEAT = { once: "Eenmalig", daily: "Elke dag", weekly: "Elke week", monthly: "Elke maand" };
@@ -378,7 +373,7 @@ function renderPlan(p) {
       <div class="two"><label for="plDate">Datum<input type="date" id="plDate" required min="${minD}" value="${dv}"></label>
       <label for="plTime">Tijd<input type="time" id="plTime" required value="${tv}"></label></div>
       <label for="plRepeat">Herhalen<select id="plRepeat">${Object.entries(REPEAT).map(([k, v]) => `<option value="${k}"${(p.schedule_repeat || "once") === k ? " selected" : ""}>${v}</option>`).join("")}</select></label>
-      <label class="check" for="plTake"><input type="checkbox" id="plTake"${p.schedule_take_out ? " checked" : ""}><span><b>Haal het getrokken lootje uit de pot</b><small>Zo komt hetzelfde lootje niet nog een keer.</small></span></label>
+      <label class="check" for="plTake"><input type="checkbox" id="plTake"${p.schedule_take_out ? " checked" : ""}><span><b>Haal het getrokken lotje uit de pot</b><small>Zo komt hetzelfde lotje niet nog een keer.</small></span></label>
       <div class="actions"><button class="btn primary" type="submit">Opslaan</button><button class="btn" type="button" data-act="panel" data-p="">Annuleren</button></div>
       <p class="msg" id="plMsg" aria-live="polite"></p>
     </form>`;
@@ -386,7 +381,7 @@ function renderPlan(p) {
   }
   if (p.schedule_at) {
     box.innerHTML = `<div class="plan"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="var(--ink)" stroke-width="2.4"/><path d="M20 11v9l6 4" stroke="var(--ink)" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
-      <div><b>Automatische trekking</b><span>${esc(fmtWhen(p.schedule_at))}</span><small>${REPEAT[p.schedule_repeat] || "Eenmalig"}${p.schedule_take_out ? " · getrokken lootje gaat uit de pot" : ""}</small></div>
+      <div><b>Automatische trekking</b><span>${esc(fmtWhen(p.schedule_at))}</span><small>${REPEAT[p.schedule_repeat] || "Eenmalig"}${p.schedule_take_out ? " · getrokken lotje gaat uit de pot" : ""}</small></div>
       <div class="plan-act"><button class="btn small" type="button" data-act="panel" data-p="plan">Wijzigen</button><button class="btn small" type="button" data-act="planStop">${confirmKey === "planStop" ? "Zeker?" : "Stoppen"}</button></div></div>`;
   } else {
     box.innerHTML = `<button class="planbtn" type="button" data-act="panel" data-p="plan"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="var(--ink)" stroke-width="2.4"/><path d="M20 11v9l6 4" stroke="var(--ink)" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg><span><b>Plan een automatische trekking</b><small>Kies een datum en tijd, dan trekt de app vanzelf</small></span></button>`;
@@ -398,7 +393,7 @@ function slipLi(s) {
 }
 function showResult(s) {
   lastResult = s;
-  $("result").innerHTML = `<div class="slip pop"><span class="eyebrow">Het lot heeft gesproken</span><div class="big">${esc(s.name)}</div>${s.created_by && s.created_by !== me.id ? `<span class="muted" style="font-size:.85rem">lootje van ${esc(who(s.created_by))}</span>` : ""}</div>
+  $("result").innerHTML = `<div class="slip pop"><span class="eyebrow">Het lot heeft gesproken</span><div class="big">${esc(s.name)}</div>${s.created_by && s.created_by !== me.id ? `<span class="muted" style="font-size:.85rem">lotje van ${esc(who(s.created_by))}</span>` : ""}</div>
     <div class="actions" style="justify-content:center">
       <button class="btn small" type="button" data-act="draw">Nog een keer</button>
       <button class="btn small" type="button" data-act="takeOut" data-id="${esc(s.id)}">Haal uit de pot</button>
@@ -412,7 +407,7 @@ function unread() { const seen = recall("lotje-seen") || 0, mu = mutedIds(); ret
 function updateBadge() { const n = view === "notif" ? 0 : unread(), b = $("badge"); if (!b) return; b.hidden = !n; b.textContent = n > 9 ? "9+" : n; }
 const PREF_TYPES = [
   ["on_pot", "Nieuwe pot", "Iemand maakt een nieuwe pot in je groep"],
-  ["on_slips", "Nieuwe lootjes", "Iemand doet lootjes in een pot"],
+  ["on_slips", "Nieuwe lotjes", "Iemand doet lotjes in een pot"],
   ["on_draw", "Lotje getrokken", "Iemand trekt een lotje, met de uitslag"],
   ["on_scheduled", "Geplande trekking", "De uitslag van een automatische trekking"],
   ["on_join", "Nieuw groepslid", "Iemand doet mee met je groep"],
@@ -468,6 +463,16 @@ function inviteText() {
   return `Hoi!\n\nDoe je mee met onze groep "${g.name}" in Trek een lotje? Daarin verzamelen we ideeën in potten en trekken we samen een lotje.\n\nKlik op deze link om direct mee te doen:\nhttps://${SITE}/?code=${g.code}\n\nOf ga naar ${SITE}, tik op "Ik heb een code" en vul deze code in: ${g.code}\n\nTot zo!\n${firstName()}`;
 }
 function updateInvite() { const t = $("invText"); if (t) t.value = inviteText(); }
+async function copyText(txt) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try { await navigator.clipboard.writeText(txt); return true; } catch (err) { /* val terug op de oude manier */ }
+  }
+  const t = document.createElement("textarea");
+  t.value = txt; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.top = "0"; t.style.left = "0"; t.style.opacity = "0"; t.style.fontSize = "16px";
+  document.body.appendChild(t); t.focus(); t.select(); t.setSelectionRange(0, txt.length);
+  let ok = false; try { ok = document.execCommand("copy"); } catch (err) { ok = false; }
+  t.remove(); return ok;
+}
 
 /* ================= data ================= */
 async function loadProfile() {
@@ -586,8 +591,12 @@ document.addEventListener("click", async (e) => {
   if (a === "openPot") return go("pot", gid, id);
   if (a === "mute") { const g = groups.find((x) => x.id === id); const m = g?.members.find((x) => x.user_id === me.id); if (!m) return; m.muted = !m.muted; renderNotif(); updateBadge(); await sb.from("group_members").update({ muted: m.muted }).eq("group_id", id).eq("user_id", me.id); return; }
   if (a === "copy" || a === "copyInvite") {
-    const txt = a === "copy" ? $("codeTxt").textContent : $("invText").value;
-    try { await navigator.clipboard.writeText(txt); b.textContent = "Gekopieerd!"; } catch (err) { if (a === "copyInvite") { $("invText").select(); } b.textContent = "Selecteer en kopieer zelf"; }
+    const txt = a === "copy" ? $("codeTxt").textContent : inviteText();
+    const label = a === "copy" ? "Kopieer" : "Kopieer bericht";
+    const ok = await copyText(txt);
+    if (!ok && a === "copyInvite" && $("invText")) { const t = $("invText"); t.focus(); t.select(); t.setSelectionRange(0, t.value.length); }
+    b.textContent = ok ? "Gekopieerd!" : "Lukt niet, selecteer en kopieer zelf";
+    clearTimeout(b._t); b._t = setTimeout(() => { b.textContent = label; }, 2500);
     return;
   }
   if (a === "leave") {
@@ -648,14 +657,6 @@ function bindForms() {
     const icon = (np.querySelector("input[name=npIcon]:checked") || {}).value || "star";
     try { await createPot(n, color, icon, [], $("npSecret").checked); } catch (err) { $("potMsg").textContent = "Pot maken lukte niet."; }
   };
-  const inv = $("invite"); if (inv) inv.onsubmit = async (e) => {
-    e.preventDefault(); const to = $("invEmail").value.trim(); if (!to) return;
-    $("invSend").disabled = true; $("invMsg").textContent = "Even versturen…";
-    const { error } = await sb.rpc("send_invite", { g: gid, p_email: to });
-    $("invSend").disabled = false;
-    if (error) { const m = String(error.message || ""); $("invMsg").textContent = m.includes("bad_email") ? "Dit e-mailadres klopt niet. Kijk het nog even na." : m.includes("too_many") ? "Je hebt vandaag al veel uitnodigingen gestuurd. Probeer het morgen weer." : "Versturen lukte niet. Probeer het nog eens."; return; }
-    $("invMsg").textContent = `Uitnodiging verstuurd naar ${to}. Die komt binnen een minuut binnen.`; $("invEmail").value = "";
-  };
   const pf = $("planForm"); if (pf) pf.onsubmit = async (e) => {
     e.preventDefault(); const d = $("plDate").value, t = $("plTime").value; if (!d || !t) return;
     const when = new Date(`${d}T${t}`);
@@ -667,7 +668,7 @@ function bindForms() {
   };
   const as = $("addSlip"); if (as) as.onsubmit = async (e) => {
     e.preventDefault(); const v = $("slipIn").value; if (!v.trim()) return;
-    try { const c = await addSlips(v.split(/[,\n]/)); $("slipIn").value = ""; $("slipMsg").textContent = c === 1 ? "Erin!" : `${c} lootjes erin!`; $("slipIn").focus(); }
+    try { const c = await addSlips(v.split(/[,\n]/)); $("slipIn").value = ""; $("slipMsg").textContent = c === 1 ? "Erin!" : `${c} lotjes erin!`; $("slipIn").focus(); }
     catch (err) { $("slipMsg").textContent = "Toevoegen lukte niet. Probeer het nog eens."; }
   };
 }

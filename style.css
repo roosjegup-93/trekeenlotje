@@ -110,7 +110,7 @@ input,textarea{background:var(--bg);border:1.5px solid var(--line);border-radius
 .ghead .faces{display:flex}
 .ghead .faces svg{width:40px;height:40px;margin-left:-10px}
 .invite{grid-column:1/-1}
-.invite textarea{min-height:120px;font-size:.9rem}
+.invite textarea{min-height:190px;font-size:.9rem}
 .share{grid-column:1/-1;background:color-mix(in srgb,var(--brand) 8%,var(--surface))!important;border-color:color-mix(in srgb,var(--brand) 30%,var(--line))!important;display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--surface);border:1.5px dashed var(--line);border-radius:16px;padding:12px 14px;font-size:.9rem}
 .code{font-family:var(--mono);font-size:1.15rem;letter-spacing:.18em;user-select:all;color:var(--ink)}
 .shelfbg{position:relative;padding-bottom:14px}
