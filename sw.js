@@ -1,6 +1,6 @@
 // Kleine service worker: maakt de app installeerbaar en laat het scherm laden bij slechte verbinding.
-const CACHE = "lotje-v3";
-const SHELL = ["/", "/index.html", "/style.css?v=3", "/app.js?v=3", "/config.js?v=2", "/vendor-supabase.js", "/icon-192.png"];
+const CACHE = "lotje-v4";
+const SHELL = ["/", "/index.html", "/style.css?v=3", "/app.js?v=4", "/config.js?v=2", "/vendor-supabase.js", "/icon-192.png"];
 
 self.addEventListener("install", (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).catch(() => {}));

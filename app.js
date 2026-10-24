@@ -120,7 +120,7 @@ let view = "loading", gid = null, pid = null;
 let groups = [], slips = {}, counts = {}, names = {}, activity = [];
 let spinning = false, confirmKey = null, lastResult = null, openPanel = null;
 let loginEmail = "", loginStep = "email", channel = null, booted = false;
-const DEFAULT_PREFS = { email_enabled: true, frequency: "direct", on_pot: true, on_slips: false, on_draw: true, on_join: true, on_scheduled: true };
+const DEFAULT_PREFS = { email_enabled: false, frequency: "direct", on_pot: true, on_slips: false, on_draw: true, on_join: true, on_scheduled: true };
 let prefs = { ...DEFAULT_PREFS }, wantNotif = location.hash === "#meldingen";
 const pendingCode = (() => { try { const c = new URLSearchParams(location.search).get("code"); if (c) { localStorage.setItem("lotje-code", c.toUpperCase()); history.replaceState(null, "", location.pathname); } return localStorage.getItem("lotje-code"); } catch (e) { return null; } })();
 
