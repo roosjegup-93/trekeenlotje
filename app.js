@@ -460,7 +460,7 @@ function toast(a) {
 /* ---------- invite ---------- */
 function inviteText() {
   const g = G(); if (!g) return "";
-  return `Hoi!\n\nDoe je mee met onze groep "${g.name}" in Trek een lotje? Daarin verzamelen we ideeën in potten en trekken we samen een lotje.\n\nKlik op deze link om direct mee te doen:\nhttps://${SITE}/?code=${g.code}\n\nOf ga naar ${SITE}, tik op "Ik heb een code" en vul deze code in: ${g.code}\n\nTot zo!\n${firstName()}`;
+  return `Hoi!\n\nDoe je mee met onze groep "${g.name}" in Trek een lotje? Daarin verzamelen we ideeën in potten en trekken we samen een lotje.\n\nKlik op deze link om direct mee te doen:\nhttps://${SITE}/?code=${g.code}\n\nOf ga naar ${SITE}, tik op "Ik heb een code" en vul deze code in: ${g.code}\n\nJe logt in met een code van 6 cijfers die je per mail krijgt. Zie je geen mail? Kijk dan even in je spam en markeer de mail als "geen spam".\n\nTot zo!\n${firstName()}`;
 }
 function updateInvite() { const t = $("invText"); if (t) t.value = inviteText(); }
 async function copyText(txt) {
